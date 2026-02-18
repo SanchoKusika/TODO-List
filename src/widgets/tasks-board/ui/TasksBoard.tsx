@@ -1,10 +1,7 @@
 ﻿import { useState } from "react";
 
 import type { Task, TaskStatus } from "../../../entities/task";
-import {
-	BoardViewSwitcher,
-	useBoardViewStore,
-} from "../../../features/board-view-switcher";
+import { useBoardViewStore } from "../../../features/board-view-switcher";
 import { CreateTaskModal } from "../../../features/task-management";
 import { t, type Language } from "../../../shared/lib";
 
@@ -37,7 +34,6 @@ export const TasksBoard = ({
 	const [selectedTask, setSelectedTask] = useState<Task | null>(null);
 
 	const viewMode = useBoardViewStore((state) => state.mode);
-	const setViewMode = useBoardViewStore((state) => state.setMode);
 
 	const todoTasks = tasks.filter((task) => task.status === "todo");
 	const inProgressTasks = tasks.filter(
@@ -54,13 +50,6 @@ export const TasksBoard = ({
 	return (
 		<>
 			<section className="tasks-board-view">
-				<BoardViewSwitcher
-					columnsLabel={t(language, "boardViewColumns")}
-					listLabel={t(language, "boardViewList")}
-					value={viewMode}
-					onChange={setViewMode}
-				/>
-
 				{viewMode === "columns" ? (
 					<TasksColumnsView
 						language={language}

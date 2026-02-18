@@ -12,14 +12,8 @@
 .header__controls {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 12px;
+	gap: 14px;
 	align-items: end;
-}
-
-.header-control {
-	display: grid;
-	gap: 6px;
-	min-width: 130px;
 }
 
 .header-control__label {
@@ -40,19 +34,4 @@
 
 .header-control__input {
 	min-width: 240px;
-}
-
-@media (max-width: 720px) {
-	.header {
-		align-items: stretch;
-	}
-
-	.header__controls {
-		width: 100%;
-	}
-
-	.header-control,
-	.header-control__input {
-		min-width: 100%;
-	}
 }

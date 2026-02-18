@@ -1,4 +1,8 @@
 import {
+	BoardViewSwitcher,
+	useBoardViewStore,
+} from "../../../features/board-view-switcher";
+import {
 	LanguageSwitcher,
 	useLanguageStore,
 } from "../../../features/language-switcher";
@@ -17,23 +21,29 @@ export const Header = () => {
 	const syncWithSystemTheme = useThemeStore(
 		(state) => state.syncWithSystemTheme,
 	);
+	const viewMode = useBoardViewStore((state) => state.mode);
+	const setViewMode = useBoardViewStore((state) => state.setMode);
 
 	return (
 		<header className="header">
 			<div className="header__controls">
+				<BoardViewSwitcher
+					columnsLabel={t(language, "boardViewColumns")}
+					listLabel={t(language, "boardViewList")}
+					value={viewMode}
+					onChange={setViewMode}
+				/>
+
 				<SearchInput
-					label={t(language, "searchLabel")}
 					placeholder={t(language, "searchPlaceholder")}
 				/>
 
 				<LanguageSwitcher
-					label={t(language, "languageLabel")}
 					value={language}
 					onChange={setLanguage}
 				/>
 
 				<ThemeSwitcher
-					label={t(language, "themeLabel")}
 					lightLabel={t(language, "themeLight")}
 					darkLabel={t(language, "themeDark")}
 					autoLabel={t(language, "themeAuto")}
