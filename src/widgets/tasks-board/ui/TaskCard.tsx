@@ -9,6 +9,8 @@ interface TaskCardProps {
 	language: Language;
 	task: Task;
 	showStatus?: boolean;
+	draggable?: boolean;
+	onDragStart?: (taskId: string) => void;
 	getStatusLabel: (status: TaskStatus) => string;
 	onEdit: (task: Task) => void;
 	onDelete: (id: string) => void;
@@ -18,7 +20,16 @@ export const TaskCard = ({ language, task, showStatus = false, getStatusLabel }:
 	const { handleDeleteTask, handleUpdateTask } = useTasks(task);
 
 	return (
-		<li className="task-card">
+		<li
+			className="task-card"
+			draggable={draggable}
+			onDragStart={(event) => {
+				if (!draggable) return;
+				event.dataTransfer.setData("text/plain", task.id);
+				event.dataTransfer.effectAllowed = "move";
+				onDragStart?.(task.id);
+			}}
+		>
 			<div className="task-card__top">
 				<h3 className="task-card__title">{task.title}</h3>
 				<div className="task-card__actions">

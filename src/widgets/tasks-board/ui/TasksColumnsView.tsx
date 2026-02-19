@@ -10,6 +10,7 @@ interface TasksColumnsViewProps {
 	onCreateTaskClick: () => void;
 	onEditTask: (task: Task) => void;
 	onDeleteTask: (id: string) => void;
+	onMoveTask: (id: string, status: TaskStatus) => void;
 	getStatusLabel: (status: TaskStatus) => string;
 }
 
@@ -21,11 +22,31 @@ export const TasksColumnsView = ({
 	onCreateTaskClick,
 	onEditTask,
 	onDeleteTask,
+	onMoveTask,
 	getStatusLabel,
 }: TasksColumnsViewProps) => {
+	const [dropStatus, setDropStatus] = useState<TaskStatus | null>(null);
+
+	const handleDrop = (status: TaskStatus, taskId: string) => {
+		if (!taskId) return;
+		onMoveTask(taskId, status);
+		setDropStatus(null);
+	};
+
 	return (
 		<section className="tasks-board">
-			<article className="tasks-column">
+			<article
+				className={`tasks-column ${dropStatus === "todo" ? "is-drop-target" : ""}`}
+				onDragOver={(event) => {
+					event.preventDefault();
+					setDropStatus("todo");
+				}}
+				onDragLeave={() => setDropStatus(null)}
+				onDrop={(event) => {
+					event.preventDefault();
+					handleDrop("todo", event.dataTransfer.getData("text/plain"));
+				}}
+			>
 				<header className="tasks-column__header">
 					<h2>{t(language, "boardTodo")}</h2>
 					<span>{todoTasks.length}</span>
@@ -37,6 +58,7 @@ export const TasksColumnsView = ({
 							key={task.id}
 							language={language}
 							task={task}
+							draggable
 							onEdit={onEditTask}
 							onDelete={onDeleteTask}
 							getStatusLabel={getStatusLabel}
@@ -49,7 +71,18 @@ export const TasksColumnsView = ({
 				</button>
 			</article>
 
-			<article className="tasks-column">
+			<article
+				className={`tasks-column ${dropStatus === "in-progress" ? "is-drop-target" : ""}`}
+				onDragOver={(event) => {
+					event.preventDefault();
+					setDropStatus("in-progress");
+				}}
+				onDragLeave={() => setDropStatus(null)}
+				onDrop={(event) => {
+					event.preventDefault();
+					handleDrop("in-progress", event.dataTransfer.getData("text/plain"));
+				}}
+			>
 				<header className="tasks-column__header">
 					<h2>{t(language, "boardInProgress")}</h2>
 					<span>{inProgressTasks.length}</span>
@@ -61,6 +94,7 @@ export const TasksColumnsView = ({
 							key={task.id}
 							language={language}
 							task={task}
+							draggable
 							onEdit={onEditTask}
 							onDelete={onDeleteTask}
 							getStatusLabel={getStatusLabel}
@@ -69,7 +103,18 @@ export const TasksColumnsView = ({
 				</ul>
 			</article>
 
-			<article className="tasks-column">
+			<article
+				className={`tasks-column ${dropStatus === "done" ? "is-drop-target" : ""}`}
+				onDragOver={(event) => {
+					event.preventDefault();
+					setDropStatus("done");
+				}}
+				onDragLeave={() => setDropStatus(null)}
+				onDrop={(event) => {
+					event.preventDefault();
+					handleDrop("done", event.dataTransfer.getData("text/plain"));
+				}}
+			>
 				<header className="tasks-column__header">
 					<h2>{t(language, "boardDone")}</h2>
 					<span>{doneTasks.length}</span>
@@ -81,6 +126,7 @@ export const TasksColumnsView = ({
 							key={task.id}
 							language={language}
 							task={task}
+							draggable
 							onEdit={onEditTask}
 							onDelete={onDeleteTask}
 							getStatusLabel={getStatusLabel}
