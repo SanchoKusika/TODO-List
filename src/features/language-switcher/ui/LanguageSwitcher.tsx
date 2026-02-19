@@ -5,10 +5,7 @@ interface LanguageSwitcherProps {
 	onChange: (language: Language) => void;
 }
 
-export const LanguageSwitcher = ({
-	value,
-	onChange,
-}: LanguageSwitcherProps) => {
+export const LanguageSwitcher = ({ value, onChange }: LanguageSwitcherProps) => {
 	return (
 		<select
 			className="header-control__select"

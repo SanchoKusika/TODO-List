@@ -1,6 +1,5 @@
 ﻿import type { Task, TaskStatus } from "../../../entities/task";
-import { t, type Language } from "../../../shared/lib";
-
+import { type Language, t } from "../../../shared/lib";
 import { TaskCard } from "./TaskCard";
 
 interface TasksListViewProps {
@@ -23,11 +22,7 @@ export const TasksListView = ({
 	return (
 		<section className="tasks-list">
 			<header className="tasks-list__header">
-				<button
-					type="button"
-					className="tasks-column__create-btn"
-					onClick={onCreateTaskClick}
-				>
+				<button type="button" className="tasks-column__create-btn" onClick={onCreateTaskClick}>
 					{t(language, "createTask")}
 				</button>
 			</header>

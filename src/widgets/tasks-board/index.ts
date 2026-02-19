@@ -1,1 +1,1 @@
-﻿export { TasksBoard } from './ui/TasksBoard'
+﻿export { TasksBoard } from "./ui/TasksBoard";

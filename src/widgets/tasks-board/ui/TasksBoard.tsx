@@ -1,14 +1,13 @@
-﻿import { useState } from "react";
+﻿import "./TasksBoard.scss";
+
+import { useState } from "react";
 
 import type { Task, TaskStatus } from "../../../entities/task";
 import { useBoardViewStore } from "../../../features/board-view-switcher";
 import { CreateTaskModal } from "../../../features/task-management";
-import { t, type Language } from "../../../shared/lib";
-
+import { type Language, t } from "../../../shared/lib";
 import { TasksColumnsView } from "./TasksColumnsView";
 import { TasksListView } from "./TasksListView";
-
-import "./TasksBoard.scss";
 
 interface TasksBoardProps {
 	language: Language;
@@ -36,9 +35,7 @@ export const TasksBoard = ({
 	const viewMode = useBoardViewStore((state) => state.mode);
 
 	const todoTasks = tasks.filter((task) => task.status === "todo");
-	const inProgressTasks = tasks.filter(
-		(task) => task.status === "in-progress",
-	);
+	const inProgressTasks = tasks.filter((task) => task.status === "in-progress");
 	const doneTasks = tasks.filter((task) => task.status === "done");
 
 	const statusLabels: Record<TaskStatus, string> = {
