@@ -1,7 +1,7 @@
 ﻿import { create } from "zustand";
 
-import type { Language } from "../../../shared/lib/i18n";
 import { STORAGE_KEYS } from "../../../shared/config/storageKeys";
+import type { Language } from "../../../shared/lib/i18n";
 
 interface LanguageState {
 	language: Language;
@@ -10,6 +10,7 @@ interface LanguageState {
 
 const readLanguage = (): Language => {
 	const value = localStorage.getItem(STORAGE_KEYS.language);
+
 	return value === "ru" ? "ru" : "en";
 };
 

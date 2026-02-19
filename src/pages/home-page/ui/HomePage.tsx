@@ -1,10 +1,10 @@
-﻿import { useLanguageStore } from "../../../features/language-switcher";
-import { useTaskSearchStore } from "../../../features/task-search";
+﻿import "./HomePage.scss";
+
+import { useLanguageStore } from "../../../features/language-switcher";
 import { useTasksStore } from "../../../features/task-management";
+import { useTaskSearchStore } from "../../../features/task-search";
 import { Header } from "../../../widgets/header";
 import { TasksBoard } from "../../../widgets/tasks-board";
-
-import "./HomePage.scss";
 
 export const HomePage = () => {
 	const language = useLanguageStore((state) => state.language);
@@ -15,9 +15,7 @@ export const HomePage = () => {
 	const deleteTask = useTasksStore((state) => state.deleteTask);
 
 	const normalizedQuery = debouncedQuery.trim().toLowerCase();
-	const filteredTasks = tasks.filter((task) =>
-		task.title.toLowerCase().includes(normalizedQuery),
-	);
+	const filteredTasks = tasks.filter((task) => task.title.toLowerCase().includes(normalizedQuery));
 
 	return (
 		<main className="home-page">

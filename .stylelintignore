@@ -1,0 +1,3 @@
+# Игнорируем всё
+node_modules
+dist

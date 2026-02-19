@@ -51,8 +51,7 @@ export const useTasksStore = create<TasksState>()(
 							? {
 									...task,
 									title: title ?? task.title,
-									description:
-										description ?? task.description,
+									description: description ?? task.description,
 									status: status ?? task.status,
 									updatedAt: new Date().toISOString(),
 								}

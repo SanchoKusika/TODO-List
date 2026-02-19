@@ -1,3 +1,3 @@
-﻿export { formatDateTime } from './date'
-export { t } from './i18n'
-export type { Language, TranslationKey } from './i18n'
+﻿export { formatDateTime } from "./date";
+export type { Language, TranslationKey } from "./i18n";
+export { t } from "./i18n";

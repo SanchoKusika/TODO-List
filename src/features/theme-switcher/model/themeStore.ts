@@ -13,9 +13,7 @@ interface ThemeState {
 }
 
 const getSystemTheme = (): ResolvedTheme => {
-	return window.matchMedia("(prefers-color-scheme: dark)").matches
-		? "dark"
-		: "light";
+	return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 };
 
 const resolveTheme = (mode: ThemeMode): ResolvedTheme => {
@@ -25,6 +23,7 @@ const resolveTheme = (mode: ThemeMode): ResolvedTheme => {
 const applyTheme = (mode: ThemeMode): ResolvedTheme => {
 	const resolvedTheme = resolveTheme(mode);
 	document.documentElement.dataset.theme = resolvedTheme;
+
 	return resolvedTheme;
 };
 

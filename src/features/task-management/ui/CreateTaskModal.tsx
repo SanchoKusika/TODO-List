@@ -1,10 +1,10 @@
-﻿import { useEffect, useState } from "react";
+﻿import "./CreateTaskModal.scss";
+
 import type { SubmitEvent } from "react";
+import { useEffect, useState } from "react";
 
 import type { Task, TaskStatus } from "../../../entities/task";
-import { t, type Language } from "../../../shared/lib/i18n";
-
-import "./CreateTaskModal.scss";
+import { type Language, t } from "../../../shared/lib/i18n";
 
 interface CreateTaskModalProps {
 	language: Language;
@@ -48,6 +48,7 @@ export const CreateTaskModal = ({
 		};
 
 		window.addEventListener("keydown", onEsc);
+
 		return () => window.removeEventListener("keydown", onEsc);
 	}, [isOpen, task, onClose]);
 
@@ -83,15 +84,8 @@ export const CreateTaskModal = ({
 		<div className="create-task-modal">
 			<div className="create-task-modal__backdrop" onClick={onClose} />
 
-			<form
-				className="create-task-modal__content"
-				onSubmit={handleSubmit}
-			>
-				<h3>
-					{task
-						? t(language, "editTaskTitle")
-						: t(language, "createTaskTitle")}
-				</h3>
+			<form className="create-task-modal__content" onSubmit={handleSubmit}>
+				<h3>{task ? t(language, "editTaskTitle") : t(language, "createTaskTitle")}</h3>
 
 				<label>
 					<span>{t(language, "taskTitleLabel")}</span>
@@ -118,19 +112,11 @@ export const CreateTaskModal = ({
 						<span>{t(language, "taskStatusLabel")}</span>
 						<select
 							value={status}
-							onChange={(event) =>
-								setStatus(event.target.value as TaskStatus)
-							}
+							onChange={(event) => setStatus(event.target.value as TaskStatus)}
 						>
-							<option value="todo">
-								{t(language, "boardTodo")}
-							</option>
-							<option value="in-progress">
-								{t(language, "boardInProgress")}
-							</option>
-							<option value="done">
-								{t(language, "boardDone")}
-							</option>
+							<option value="todo">{t(language, "boardTodo")}</option>
+							<option value="in-progress">{t(language, "boardInProgress")}</option>
+							<option value="done">{t(language, "boardDone")}</option>
 						</select>
 					</label>
 				)}
@@ -140,9 +126,7 @@ export const CreateTaskModal = ({
 						{t(language, "cancel")}
 					</button>
 					<button type="submit">
-						{task
-							? t(language, "saveChanges")
-							: t(language, "createTask")}
+						{task ? t(language, "saveChanges") : t(language, "createTask")}
 					</button>
 				</div>
 			</form>

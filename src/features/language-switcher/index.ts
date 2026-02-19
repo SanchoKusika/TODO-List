@@ -1,2 +1,2 @@
-export { LanguageSwitcher } from './ui/LanguageSwitcher'
-export { useLanguageStore } from './model/languageStore'
+export { useLanguageStore } from "./model/languageStore";
+export { LanguageSwitcher } from "./ui/LanguageSwitcher";

@@ -11,6 +11,7 @@ interface BoardViewState {
 
 const readBoardViewMode = (): BoardViewMode => {
 	const value = localStorage.getItem(STORAGE_KEYS.boardViewMode);
+
 	return value === "list" ? "list" : "columns";
 };
 

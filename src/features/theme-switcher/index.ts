@@ -1,3 +1,3 @@
-export { ThemeSwitcher } from './ui/ThemeSwitcher'
-export { useThemeStore } from './model/themeStore'
-export type { ThemeMode, ResolvedTheme } from './model/themeStore'
+export type { ResolvedTheme, ThemeMode } from "./model/themeStore";
+export { useThemeStore } from "./model/themeStore";
+export { ThemeSwitcher } from "./ui/ThemeSwitcher";

@@ -1,8 +1,5 @@
-import { useState } from "react";
-
-import type { Task, TaskStatus } from "../../../entities/task";
-import { t, type Language } from "../../../shared/lib";
-
+﻿import type { Task, TaskStatus } from "../../../entities/task";
+import { type Language, t } from "../../../shared/lib";
 import { TaskCard } from "./TaskCard";
 
 interface TasksColumnsViewProps {
@@ -69,11 +66,7 @@ export const TasksColumnsView = ({
 					))}
 				</ul>
 
-				<button
-					type="button"
-					className="tasks-column__create-btn"
-					onClick={onCreateTaskClick}
-				>
+				<button type="button" className="tasks-column__create-btn" onClick={onCreateTaskClick}>
 					{t(language, "createTask")}
 				</button>
 			</article>
