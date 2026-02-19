@@ -47,6 +47,18 @@ export const TasksBoard = ({
 		done: t(language, "boardDone"),
 	};
 
+	const moveTaskToStatus = (id: string, status: TaskStatus) => {
+		const task = tasks.find((item) => item.id === id);
+		if (!task || task.status === status) return;
+
+		onUpdateTask({
+			id: task.id,
+			title: task.title,
+			description: task.description,
+			status,
+		});
+	};
+
 	return (
 		<>
 			<section className="tasks-board-view">
@@ -65,6 +77,7 @@ export const TasksBoard = ({
 							setIsTaskModalOpen(true);
 						}}
 						onDeleteTask={onDeleteTask}
+						onMoveTask={moveTaskToStatus}
 						getStatusLabel={(status) => statusLabels[status]}
 					/>
 				) : (

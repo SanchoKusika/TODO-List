@@ -52,6 +52,10 @@
 	display: grid;
 	grid-template-rows: auto 1fr auto;
 	gap: 10px;
+	&.is-drop-target {
+		border-color: var(--color-accent);
+		background: #2456d605;
+	}
 }
 
 .tasks-column__header {
@@ -127,6 +131,14 @@
 	display: grid;
 	gap: 6px;
 	min-width: 0;
+}
+
+.tasks-column .task-card {
+	cursor: grab;
+
+	&:active {
+		cursor: grabbing;
+	}
 }
 
 .task-card__top {
