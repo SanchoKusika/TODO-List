@@ -16,8 +16,8 @@ interface TaskCardProps {
 	onDelete: (id: string) => void;
 }
 
-export const TaskCard = ({ language, task, showStatus = false, getStatusLabel }: TaskCardProps) => {
-	const { handleDeleteTask, handleUpdateTask } = useTasks(task);
+export const TaskCard = ({ language, task, showStatus = false, draggable = false, onDragStart, getStatusLabel, onEdit, onDelete }: TaskCardProps) => {
+	const { handleDeleteTask, handleUpdateTask } = useTasks(task, { onEdit, onDelete });
 
 	return (
 		<li
@@ -33,8 +33,8 @@ export const TaskCard = ({ language, task, showStatus = false, getStatusLabel }:
 			<div className="task-card__top">
 				<h3 className="task-card__title">{task.title}</h3>
 				<div className="task-card__actions">
-					<IconButton onClick={handleUpdateTask} icon={<EditIcon />} />
-					<IconButton onClick={handleDeleteTask} icon={<DeleteIcon />} />
+					<IconButton className="task-card__edit-btn" onClick={handleUpdateTask} icon={<EditIcon />} />
+					<IconButton className="task-card__delete-btn" onClick={handleDeleteTask} icon={<DeleteIcon />} />
 				</div>
 			</div>
 
