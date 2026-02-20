@@ -6,4 +6,5 @@ export type ButtonProps = PropsWithChildren & {
 	type?: "button" | "submit" | "reset";
 	disabled?: boolean;
 	style?: CSSProperties;
+	title?: string;
 };
